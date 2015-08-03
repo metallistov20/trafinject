@@ -47,6 +47,8 @@ tID_e=$tID
 
 	SNMP_GRP="$(. ./functions.sh && CheckSnmp "$4")"
 
+	ACL_GRP="$(. ./functions.sh && CheckAcl "$4")"
+
 	FILENAME="$(. ./functions.sh && CheckFilename "$4")"
 
 	echo "Paramaters passed to <$0> are:";
@@ -54,10 +56,9 @@ tID_e=$tID
 		echo "OPERATION <$OPERATION>";
 		echo "MODEL <$MODEL>";
 		echo "SNMP_GRP <$SNMP_GRP>";
-
+		echo "ACL_GRP <$ACL_GRP>";
 
 	./inject --open --target="$IP">$TMP_NAME
-
 
 	while read line; do
 
@@ -123,11 +124,9 @@ tID_e=$tID
 
 	elif  [ $OPERATION == "acl" ]; then
 
-		echo "<$0>: Simulating user manipulations on SNMP Tab in web interface of (TL-SL$MODEL) switch";
+		echo "<$0>: Doing ACL settings ( --acl-data=$ACL_GRP )";
 
-		./inject --ACL --id="$tID" --target="$IP"
-
-		# not implemented - nothing to save. closing site, going out .
+		./inject --ACL --id="$tID" --target="$IP" --acl-data="$ACL_GRP"
 
 		./inject --close --target="$IP"
 

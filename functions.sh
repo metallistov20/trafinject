@@ -124,6 +124,64 @@ CheckSnmp()
 	exit 0
 }
 
+CheckAcl()
+{
+	# SNMP Group name to work with
+	ACL_GRP=$1
+
+	if (( $ACL_GRP >= 0 )) 2>/dev/null; then
+
+	   	#echo "ACL Grp. name is an integer. Is it valid one?"
+
+		# valid ACL:: {0,... , 299}.
+		if [[ $ACL_GRP -ge 0 && $ACL_GRP -le 299 ]] ; then
+
+			echo "<$0>: ACL Grp. name belongs to interval [0..299].">$InfoFile
+		else
+			echo "<$0>: Not a valid integer.">$ErrorFile
+		fi
+
+	else
+
+		echo "<$0>: ACL Grp. name is not a valid integer.">$ErrorFile
+
+		echo "BadParameter";
+
+		exit -2
+	fi
+
+	echo $ACL_GRP;
+
+	exit 0
+exit 0
+
+
+	if [ -i $ACL_GRP ]; then
+	   	#echo "ACL Grp. name is an integer. Is it valid one?"
+
+		# Valid:: {0, ... ,299}
+		#if [ $ACL_GRP -ge 0 ] && [ $ACL_GRP -le 299 ] ;
+		if [[ $ACL_GRP -ge 0 && $ACL_GRP -le 299 ]] ; then
+
+			echo "<$0>: ACL Grp. name belongs to interval [0..299].">$ErrorFile
+		else
+			echo "<$0>: Not a valid integer.">$ErrorFile
+		fi
+		
+	else
+		echo "<$0>: ACL Grp. name is not a valid integer.">$ErrorFile
+
+		echo "BadParameter";
+
+		exit -2
+
+	fi
+
+	echo $ACL_GRP;
+
+	exit 0
+}
+
 CheckFilename()
 {
 	# SNMP Group name to work with

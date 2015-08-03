@@ -67,8 +67,11 @@ char cIpAddr[MAX_IP_SIZE];
 /* Session tID, valid between calls <iOpenSite> and <post_site>  */
 char cTid[MAX_TID_SIZE];
 
-/* Name of SNMP community ot be created on target switch */
+/* Name of SNMP community to be created on target switch */
 char cSnmp[MAX_SNMP_SIZE];
+
+/* Parameters of ACL froup to be created on target switch */
+char cAcl[MAX_SNMP_SIZE];
 
 /* Name of switch model. 5 chars long, so assuming MAX_SNMP_SIZE is enough */
 char cModel[MAX_SNMP_SIZE];
@@ -357,12 +360,50 @@ int iUpgradeFirmware()
 	return INJ_SUCCESS;
 }
 
+/* 
+
+Perform ACL settings (grp. creation). Tested on switches: TL-SL2428 (TODO: to be tested on TL-SL2218, TL-SL5428E).
+
+*/
 int iAclGroup()
 {
-	DCOMMON("%s: ACL group creation OPCODE=%d is not yet implemented\n", cArg0, iOperation);
+#if (0)
+// TODO: remnove what is below
+/userRpm/ACLRuleCreateRpm.htm?s_userlevel=1&_tid_=81daaf938412fc3c
+//GET /help/ACLRuleCreateHelpRpm_Smart.htm
+GET /userRpm/ACLRuleCreateRpm.htm?submit=Submit&aclId=99&ruleOrder=1&_tid_=81daaf938412fc3c
+//GET /help/ACLRuleCreateHelpRpm_Smart.htm
+#endif /* (0) */
 
-	/* Opetation is not yet implemented */
-	return INJ_NOT_IMPL;
+	strcpy (cUrl1, "http://");
+	strcat (cUrl1, cIpAddr);
+	DURL("%s: cUrl1 = %s\n", cArg0, cUrl1);
+
+	strcpy (cUrl2, cUrl1);
+	strcat (cUrl2, "/userRpm/ACLRuleCreateRpm.htm?s_userlevel=1&_tid_=");
+	strcat (cUrl2, cTid);
+	DURL("%s: cUrl2 = %s\n", cArg0, cUrl2);
+
+	strcpy (cUrl3, cUrl1);
+	strcat (cUrl3, "/userRpm/ACLRuleCreateRpm.htm?submit=Submit&aclId=");
+	strcat (cUrl3, cAcl);
+	strcat (cUrl3, "&ruleOrder=1&_tid_=");
+	strcat (cUrl3, cTid);
+	DURL("%s: cUrl3 = %s\n", cArg0, cUrl3);
+
+	/* Enter site TODO: CHECK IF 'CURLOPT_USERPWD' IS NEEDED. ASSUMING THAT IS. */
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl1 );
+	curl_easy_setopt(curl, CURLOPT_USERPWD, "admin:admin");
+	res = curl_easy_perform(curl);
+
+	/*  */
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl2);
+	res = curl_easy_perform(curl);
+
+	/*  */
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl3);
+	res = curl_easy_perform(curl);
+
 }
 
 /* 
@@ -409,6 +450,14 @@ int iRebootSwitch()
 
 int iAssignIp()
 {
+#if (0)
+POST /logon/LogonRpm.htm HTTP/1.1  (application/x-www-form-urlencoded)
+GET /userRpm/SystemInfoRpm.htm?s_userlevel=1&_tid_=6e1d5d1108a6d791 HTTP/1.1 
+GET /userRpm/SystemIpRpm.htm?s_userlevel=1&_tid_=6e1d5d1108a6d791 HTTP/1.1 
+GET /userRpm/SystemIpRpm.htm?ip_mode=0&ip_mgmt_vlanid=1&ip_address=192.168.0.28&ip_mask=255.255.240.0&ip_gateway=&submit=Apply&_tid_=6e1d5d1108a6d791 HTTP/1.1 
+GET /userRpm/SystemInfoRpm.htm?s_userlevel=1&_tid_=6e1d5d1108a6d791 HTTP/1.1 
+#endif /* (0) */
+
 	DCOMMON("%s: IP address assignment OPCODE=%d is not yet implemented\n", cArg0, iOperation);
 
 	/* Opetation is not yet implemented */
@@ -425,6 +474,13 @@ int iBindMacIp()
 
 int iEnablePort()
 {
+#if (0)
+GET /userRpm/SystemInfoRpm.htm?t=port&_tid_=58b10980f6f32c2f
+GET /userRpm/PortStatusSetRpm.htm?s_userlevel=1&_tid_=58b10980f6f32c2f
+GET /help/PortStatusSetHelpRpm.htm
+GET /userRpm/PortStatusSetRpm.htm?txt_ipaddr=&state=1&spd=0&flowctrl=0&chk_1=1&chk_2=1&chk_3=1&submit=Apply&_tid_=58b10980f6f32c2f&t_port_name= 
+#endif /* (0) */
+
 	DCOMMON("%s: Port enabling OPCODE=%d is not yet implemented\n", cArg0, iOperation);
 
 	/* Opetation is not yet implemented */
@@ -452,7 +508,7 @@ int iOption;
 
 		{"create",no_argument, 0,	'c'},
 		{"save",  no_argument, 0,	's'},
-		{"ACL",no_argument,    0,	'a'},
+		{"ACL",	  no_argument, 0,	'a'},
 		{"upgrade",  no_argument, 0,	'r'},
 		{"reboot",  no_argument, 0,	'b'},
 
@@ -463,6 +519,8 @@ int iOption;
 		{"community",required_argument, 0,	'u'},
 		{"filename",required_argument, 0,	'f'},
 		{"ipassign",required_argument, 0,	'g'},
+		{"acl-data",required_argument, 0,	'l'},
+
 		/* End of array */
 		{0, 0, 0, 0}
 	};
@@ -471,7 +529,7 @@ int iOption;
 	int option_index = 0;
 
 		/* Get each paramter */
-		iOption = getopt_long (argc, argv, "oxcsarb:t:i:m:u:f:g:", long_options, &option_index);
+		iOption = getopt_long (argc, argv, "oxcsarb:t:i:m:u:f:g:l:", long_options, &option_index);
 
 		/* Break cycle at the end of the options */
 		if (-1 == iOption) break;
@@ -552,10 +610,16 @@ int iOption;
 				strcpy(cFwName, optarg);
 				break;
 
-			/* Couple: Assign switch IP address manually */
+			/* Couple: Assign static IP address manually */
 			case 'g':
-				DCOMMON("%s: option -f with value `%s'\n", cArg0, optarg);
+				DCOMMON("%s: option -g with value `%s'\n", cArg0, optarg);
 				strcpy(cNewIpAddr, optarg);
+				break;
+
+			/* Couple: Assign ACL setings */
+			case 'l':
+				DCOMMON("%s: option -l (--acl-data) with value `%s'\n", cArg0, optarg);
+				strcpy(cAcl, optarg);
 				break;
 
 			case '?':

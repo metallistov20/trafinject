@@ -299,6 +299,7 @@ int iSaveSite()
 }
 
 /*
+
  Function to upload new firmware onto switch and upgrade it there 
 
 */
@@ -366,7 +367,7 @@ int iAclGroup()
 
 /* 
 
-TODO: Worked on 5428E. test on rest switches.
+Issue reboot command. Tested on switches: TL-SL2428, TL-SL2218, TL-SL5428E.
 
 */
 int iRebootSwitch()

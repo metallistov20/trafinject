@@ -364,13 +364,61 @@ int iAclGroup()
 	return INJ_NOT_IMPL;
 }
 
+/* 
 
+TODO: Worked on 5428E. test on rest switches.
+
+*/
 int iRebootSwitch()
 {
+#if (0)
+//TODO: remove this K&H stuff.
+
+/userRpm/RestoreRpm.htm?s_userlevel=1&_tid_=3b786f7964e9e7d8 HTTP/1.1 
+/userRpm/ReiniRstAdRpm.htm?restore=Reset&_tid_=3b786f7964e9e7d8 HTTP/1.1 
+/userRpm/ReiniRstAdTempRpm.htm?_tid_=3b786f7964e9e7d8 HTTP/1.1 
+
+//TODO: remove this obsolete stuff.
 	DCOMMON("%s: Reboot switch OPCODE=%d is not yet implemented\n", cArg0, iOperation);
 
 	/* Opetation is not yet implemented */
 	return INJ_NOT_IMPL;
+
+#endif /* (0) */
+
+
+	strcpy (cUrl1, "http://");
+	strcat (cUrl1, cIpAddr);
+	strcat (cUrl1, "/userRpm/RestoreRpm.htm?s_userlevel=1&_tid_=");
+	strcat (cUrl1, cTid);
+	DURL("%s: cUrl1 = %s\n", cArg0, cUrl1);
+
+	strcpy (cUrl2, "http://");
+	strcat (cUrl2, cIpAddr);
+	strcat (cUrl2, "/userRpm/ReiniRstAdRpm.htm?restore=Reset&_tid_=");
+	strcat (cUrl2, cTid);
+	DURL("%s: cUrl2 = %s\n", cArg0, cUrl2);
+
+	strcpy (cUrl2, "http://");
+	strcat (cUrl2, cIpAddr);
+	strcat (cUrl2, "/userRpm/ReiniRstAdTempRpm.htm?_tid_=");
+	strcat (cUrl2, cTid);
+	DURL("%s: cUrl3 = %s\n", cArg0, cUrl3);
+
+	/* TODO: add comment 1 */
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl1 );
+	res = curl_easy_perform(curl);
+
+	/* TODO: add comment 2 */
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl2);
+	res = curl_easy_perform(curl);
+
+	/* TODO: add comment 3 */
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl3);
+	res = curl_easy_perform(curl);
+
+	/*  */
+	return INJ_SUCCESS;
 
 }
 

@@ -111,6 +111,13 @@ tID_e=$tID
 
 		./inject --create --id="$tID" --target="$IP" --community="$SNMP_GRP"
 
+	elif  [ $OPERATION == "reboot" ]; then
+
+		echo "<$0>: Performing remote reboot of (TL-SL$MODEL) switch";
+
+		./inject --reboot --id="$tID" --target="$IP" 
+
+
 	elif  [ $OPERATION == "acl" ]; then
 
 		echo "<$0>: Simulating user manipulations on SNMP Tab in web interface of (TL-SL$MODEL) switch";

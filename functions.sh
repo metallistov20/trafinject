@@ -56,6 +56,10 @@ CheckOp()
 
 		echo "<$0>: will only save the changes alegedly done earlier">$InfoFile
 
+	elif  [ $OPERATION == "reboot" ]; then
+
+		echo "<$0>: will reboot the switch right now">$InfoFile
+
 	elif  [ $OPERATION == "upgrade" ]; then
 
 		echo "<$0>: will upgrade firmware of switch">$InfoFile

@@ -68,6 +68,9 @@ CheckOp()
 
 		echo "<$0>: will create ACL group">$InfoFile
 
+	elif  [ $OPERATION == "static" ]; then
+
+		echo "<$0>: will assign static IP address with netmask">$InfoFile
 
 	else
 
@@ -131,9 +134,9 @@ CheckAcl()
 
 	if (( $ACL_GRP >= 0 )) 2>/dev/null; then
 
-	   	#echo "ACL Grp. name is an integer. Is it valid one?"
+	   	# ACL Grp. name is an integer. Is it valid one?
 
-		# valid ACL:: {0,... , 299}.
+		# valid ACL:: {0, ..., 299}.
 		if [[ $ACL_GRP -ge 0 && $ACL_GRP -le 299 ]] ; then
 
 			echo "<$0>: ACL Grp. name belongs to interval [0..299].">$InfoFile
@@ -148,33 +151,6 @@ CheckAcl()
 		echo "BadParameter";
 
 		exit -2
-	fi
-
-	echo $ACL_GRP;
-
-	exit 0
-exit 0
-
-
-	if [ -i $ACL_GRP ]; then
-	   	#echo "ACL Grp. name is an integer. Is it valid one?"
-
-		# Valid:: {0, ... ,299}
-		#if [ $ACL_GRP -ge 0 ] && [ $ACL_GRP -le 299 ] ;
-		if [[ $ACL_GRP -ge 0 && $ACL_GRP -le 299 ]] ; then
-
-			echo "<$0>: ACL Grp. name belongs to interval [0..299].">$ErrorFile
-		else
-			echo "<$0>: Not a valid integer.">$ErrorFile
-		fi
-		
-	else
-		echo "<$0>: ACL Grp. name is not a valid integer.">$ErrorFile
-
-		echo "BadParameter";
-
-		exit -2
-
 	fi
 
 	echo $ACL_GRP;
@@ -204,4 +180,6 @@ export -f CheckIp
 export -f CheckOp
 export -f CheckModel
 export -f CheckSnmp
+export -f CheckAcl
+
 

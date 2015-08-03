@@ -73,6 +73,12 @@ char cSnmp[MAX_SNMP_SIZE];
 /* Parameters of ACL froup to be created on target switch */
 char cAcl[MAX_SNMP_SIZE];
 
+/* */
+char cAddr[MAX_SNMP_SIZE];
+
+/* */
+char cMask[MAX_SNMP_SIZE];
+
 /* Name of switch model. 5 chars long, so assuming MAX_SNMP_SIZE is enough */
 char cModel[MAX_SNMP_SIZE];
 
@@ -443,25 +449,92 @@ int iRebootSwitch()
 	curl_easy_setopt(curl, CURLOPT_URL, cUrl3);
 	res = curl_easy_perform(curl);
 
-	/*  */
+	/*  TODO: add comm */
 	return INJ_SUCCESS;
-
 }
 
+/* 
+
+Set a static IP address. 
+
+TODO: to be tested on TL-SL2428, TL-SL2218, TL-SL5428E.
+
+*/
 int iAssignIp()
 {
+// FIXME! FIXME! FIXME! tID are NEEDE for 2218, 2428 for this op.
+// FIXME! FIXME! FIXME! we must parse the out first, since in current case the <inject.sh::NotAssigned> does not suffice !
+
 #if (0)
-POST /logon/LogonRpm.htm HTTP/1.1  (application/x-www-form-urlencoded)
-GET /userRpm/SystemInfoRpm.htm?s_userlevel=1&_tid_=6e1d5d1108a6d791 HTTP/1.1 
-GET /userRpm/SystemIpRpm.htm?s_userlevel=1&_tid_=6e1d5d1108a6d791 HTTP/1.1 
-GET /userRpm/SystemIpRpm.htm?ip_mode=0&ip_mgmt_vlanid=1&ip_address=192.168.0.28&ip_mask=255.255.240.0&ip_gateway=&submit=Apply&_tid_=6e1d5d1108a6d791 HTTP/1.1 
-GET /userRpm/SystemInfoRpm.htm?s_userlevel=1&_tid_=6e1d5d1108a6d791 HTTP/1.1 
+GET /userRpm/SystemInfoRpm.htm?s_userlevel=1&_tid_=c66fcc3cd75e9319&_tid_=c66fcc3cd75e9319
+GET /userRpm/SystemIpRpm.htm?s_userlevel=1&_tid_=c66fcc3cd75e9319
+GET /userRpm/SystemIpRpm.htm?ip_mode=0&ip_mgmt_vlanid=1&ip_address=192.168.0.18&ip_mask=255.255.255.0&ip_gateway=&submit=Apply&_tid_=c66fcc3cd75e9319
+GET /userRpm/SystemInfoRpm.htm?s_userlevel=1&_tid_=c66fcc3cd75e9319
 #endif /* (0) */
 
-	DCOMMON("%s: IP address assignment OPCODE=%d is not yet implemented\n", cArg0, iOperation);
+/*
+TODO:  NECESSARY ??
 
-	/* Opetation is not yet implemented */
-	return INJ_NOT_IMPL;
+ 
+	strcpy (cUrl1, "http://");
+	strcat (cUrl1, cIpAddr);
+	strcat (cUrl1, "/SystemInfoRpm.htm?s_userlevel=1&_tid_=");
+	strcat (cUrl1, cTid);
+	strcat (cUrl1, "&_tid_=");
+	strcat (cUrl1, cTid);	
+	DURL("%s: cUrl1 = %s\n", cArg0, cUrl1);
+*/
+	strcpy (cUrl2, "http://");
+	strcat (cUrl2, cIpAddr);
+	strcat (cUrl2, "/userRpm/SystemIpRpm.htm?s_userlevel=1&_tid_=");
+	strcat (cUrl2, cTid);
+	DURL("%s: cUrl2 = %s\n", cArg0, cUrl2);
+
+	strcpy (cUrl3, "http://");
+	strcat (cUrl3, cIpAddr);
+	strcat (cUrl3, "/userRpm/SystemIpRpm.htm?ip_mode=0&ip_mgmt_vlanid=1&ip_address=");
+	strcat (cUrl3, cAddr);
+	strcat (cUrl3, "&ip_mask=");
+	strcat (cUrl3, cMask);
+	strcat (cUrl3, "&ip_gateway=&submit=Apply&_tid_=");
+	strcat (cUrl3, cTid);
+	DURL("%s: cUrl3 = %s\n", cArg0, cUrl3);
+/*
+TODO:  NECESSARY ??
+
+	strcpy (cUrl4, "http://");
+	strcat (cUrl4, cIpAddr);
+	strcat (cUrl4, "/userRpm/SystemInfoRpm.htm?s_userlevel=1&_tid_=");
+	strcat (cUrl4, cTid);
+	DURL("%s: cUrl4 = %s\n", cArg0, cUrl4);
+*/
+	/* TODO: add comment 1 */
+/*
+TODO:  NECESSARY ??
+
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl1 );
+	res = curl_easy_perform(curl);
+*/
+	/* TODO: add comment 2 */
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl2);
+	res = curl_easy_perform(curl);
+
+	/* TODO: add comment 3 */
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl3);
+	res = curl_easy_perform(curl);
+
+	/* TODO: add comment 3 */
+/*
+TODO:  NECESSARY ??
+
+
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl4);
+	res = curl_easy_perform(curl);
+*/
+
+	/*  TODO: add comm */
+	return INJ_SUCCESS;
+
 }
 
 int iBindMacIp()
@@ -511,6 +584,7 @@ int iOption;
 		{"ACL",	  no_argument, 0,	'a'},
 		{"upgrade",  no_argument, 0,	'r'},
 		{"reboot",  no_argument, 0,	'b'},
+		{"ipassign",  no_argument, 0,	'g'},// TODO: change to 'static' or sort of that.
 
 		/* Couples: names of variables and their values */
 		{"target",  required_argument, 0,	't'},
@@ -518,8 +592,10 @@ int iOption;
 		{"model",   required_argument, 0,	'm'},
 		{"community",required_argument, 0,	'u'},
 		{"filename",required_argument, 0,	'f'},
-		{"ipassign",required_argument, 0,	'g'},
+//		{"ipassign",required_argument, 0,	'g'},
 		{"acl-data",required_argument, 0,	'l'},
+		{"ip-addr",required_argument, 0,	'0'},
+		{"ip-mask",required_argument, 0,	'1'},
 
 		/* End of array */
 		{0, 0, 0, 0}
@@ -529,7 +605,7 @@ int iOption;
 	int option_index = 0;
 
 		/* Get each paramter */
-		iOption = getopt_long (argc, argv, "oxcsarb:t:i:m:u:f:g:l:", long_options, &option_index);
+		iOption = getopt_long (argc, argv, "oxcsarbg:t:i:m:u:f:l:0:1:", long_options, &option_index);
 
 		/* Break cycle at the end of the options */
 		if (-1 == iOption) break;
@@ -576,9 +652,16 @@ int iOption;
 
 			/* Single: switch reboot */
 			case 'b':
-				DCOMMON("%s: option -r\n", cArg0);
+				DCOMMON("%s: option -b\n", cArg0);
 				iOperation = DO_REBOOT_OP;
 				break;
+
+			/* Single: ipset */
+			case 'g':
+				DCOMMON("%s: option -g\n", cArg0);
+				iOperation = DO_IPSET_OP;
+				break;
+
 
 			/* Couple: IP addr of target switch */
 			case 't':
@@ -611,16 +694,30 @@ int iOption;
 				break;
 
 			/* Couple: Assign static IP address manually */
-			case 'g':
+/*			case 'g':
 				DCOMMON("%s: option -g with value `%s'\n", cArg0, optarg);
 				strcpy(cNewIpAddr, optarg);
 				break;
+*/
 
 			/* Couple: Assign ACL setings */
 			case 'l':
 				DCOMMON("%s: option -l (--acl-data) with value `%s'\n", cArg0, optarg);
 				strcpy(cAcl, optarg);
 				break;
+
+			/* Couple: ip address */
+			case '0':
+				DCOMMON("%s: option -0 (--ip-addr) with value `%s'\n", cArg0, optarg);
+				strcpy(cAddr, optarg);
+				break;
+
+			/* Couple: ip network mask */
+			case '1':
+				DCOMMON("%s: option -1 (--ip-mask) with value `%s'\n", cArg0, optarg);
+				strcpy(cMask, optarg);
+				break;
+
 
 			case '?':
 				/* getopt_long prints an error message, so we don't */

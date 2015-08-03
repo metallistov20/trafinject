@@ -51,6 +51,9 @@ tID_e=$tID
 
 	FILENAME="$(. ./functions.sh && CheckFilename "$4")"
 
+	#IP_ADDR="$(. ./functions.sh && CheckIP "$4")" -- sure, we strech it
+	#IP_MASK="$(. ./functions.sh && CheckMask "$4")" -- sure, we strech it
+
 	echo "Paramaters passed to <$0> are:";
 		echo "IP <$IP>";
 		echo "OPERATION <$OPERATION>";
@@ -127,6 +130,16 @@ tID_e=$tID
 		echo "<$0>: Doing ACL settings ( --acl-data=$ACL_GRP )";
 
 		./inject --ACL --id="$tID" --target="$IP" --acl-data="$ACL_GRP"
+
+		./inject --close --target="$IP"
+
+		exit 0
+
+	elif  [ $OPERATION == "static" ]; then
+
+		echo "<$0>: Assigning static IP address ( --ip-addr="$4" --ip-mask="$5")";
+
+		./inject --ipassign --id="$tID" --target="$IP" --ip-addr="$4" --ip-mask="$5"
 
 		./inject --close --target="$IP"
 

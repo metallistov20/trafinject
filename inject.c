@@ -382,6 +382,22 @@ int iAssignIp()
 	return INJ_NOT_IMPL;
 }
 
+int iBindMacIp()
+{
+	DCOMMON("%s: MAC-IP binding OPCODE=%d is not yet implemented\n", cArg0, iOperation);
+
+	/* Opetation is not yet implemented */
+	return INJ_NOT_IMPL;
+}
+
+int iEnablePort()
+{
+	DCOMMON("%s: Port enabling OPCODE=%d is not yet implemented\n", cArg0, iOperation);
+
+	/* Opetation is not yet implemented */
+	return INJ_NOT_IMPL;
+}
+
 int main (int argc, char **argv)
 {
 int iOption;

@@ -368,7 +368,7 @@ int iUpgradeFirmware()
 
 /* 
 
-Perform ACL settings (grp. creation). Tested on switches: TL-SL2428 (TODO: to be tested on TL-SL2218, TL-SL5428E).
+Perform ACL settings (group creation). Tested on switches: TL-SL2428 (TODO: to be tested on TL-SL2218, TL-SL5428E).
 
 */
 int iAclGroup()
@@ -394,11 +394,11 @@ int iAclGroup()
 	curl_easy_setopt(curl, CURLOPT_USERPWD, "admin:admin");
 	res = curl_easy_perform(curl);
 
-	/*  */
+	/* TODO: add comment 1 */
 	curl_easy_setopt(curl, CURLOPT_URL, cUrl2);
 	res = curl_easy_perform(curl);
 
-	/*  */
+	/* TODO: add comment 2 */
 	curl_easy_setopt(curl, CURLOPT_URL, cUrl3);
 	res = curl_easy_perform(curl);
 
@@ -449,7 +449,7 @@ int iRebootSwitch()
 
 Set a static IP address with subnet mask. 
 
-Was ested on TL-SL2428, TL-SL2218, TL-SL5428E.
+Was tested on TL-SL2428, TL-SL2218, TL-SL5428E.
 
 */
 int iAssignIp()
@@ -527,19 +527,56 @@ int iBindMacIp()
 	return INJ_NOT_IMPL;
 }
 
+/* 
+
+Not tested. TODO: test on 2218, 2428, 5428E
+
+*/
 int iEnablePort()
 {
 #if (0)
-GET /userRpm/SystemInfoRpm.htm?t=port&_tid_=58b10980f6f32c2f
-GET /userRpm/PortStatusSetRpm.htm?s_userlevel=1&_tid_=58b10980f6f32c2f
-GET /help/PortStatusSetHelpRpm.htm
-GET /userRpm/PortStatusSetRpm.htm?txt_ipaddr=&state=1&spd=0&flowctrl=0&chk_1=1&chk_2=1&chk_3=1&submit=Apply&_tid_=58b10980f6f32c2f&t_port_name= 
+//TODO: remove what is below
+ GET /userRpm/SystemInfoRpm.htm?t=port&_tid_=58b10980f6f32c2f
+ GET /userRpm/PortStatusSetRpm.htm?s_userlevel=1&_tid_=58b10980f6f32c2f
+ GET /userRpm/PortStatusSetRpm.htm?txt_ipaddr=&state=1&spd=0&flowctrl=0&chk_1=1&chk_2=1&chk_3=1&submit=Apply&_tid_=58b10980f6f32c2f&t_port_name= 
 #endif /* (0) */
 
-	DCOMMON("%s: Port enabling OPCODE=%d is not yet implemented\n", cArg0, iOperation);
+	/* TODO: add comment */
+	strcpy (cUrl1, "http://");
+	strcat (cUrl1, cIpAddr);
+	strcat (cUrl1, "/userRpm/SystemInfoRpm.htm?t=port&_tid_=");
+	strcat (cUrl1, cTid);
+	DURL("%s: cUrl1 = %s\n", cArg0, cUrl1);
+
+	/* TODO: CHECK IF MANDATORY. ASSUMING THAT IS. */
+	strcpy (cUrl2, "http://");
+	strcat (cUrl2, cIpAddr);
+	strcat (cUrl2, "/userRpm/PortStatusSetRpm.htm?s_userlevel=1&_tid_=");
+	strcat (cUrl2, cTid);
+	DURL("%s: cUrl2 = %s\n", cArg0, cUrl2);
+
+	/* Prepare envelope with new address and subnem mask (adn rest) */
+	strcpy (cUrl3, "http://");
+	strcat (cUrl3, cIpAddr);
+	strcat (cUrl3, "/userRpm/PortStatusSetRpm.htm?txt_ipaddr=&state=1&spd=0&flowctrl=0&chk_1=1&chk_2=1&chk_3=1&submit=Apply&_tid_=");
+	strcat (cUrl3, cTid);
+	strcat (cUrl3, "&t_port_name= ");
+	DURL("%s: cUrl3 = %s\n", cArg0, cUrl3);
+
+	/* TODO: add comment 1 */
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl1 );
+	res = curl_easy_perform(curl);
+
+	/* TODO: add comment 2 */
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl2);
+	res = curl_easy_perform(curl);
+
+	/* TODO: add comment 3 */
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl3);
+	res = curl_easy_perform(curl);
 
 	/* Opetation is not yet implemented */
-	return INJ_NOT_IMPL;
+	return INJ_SUCCESS;
 }
 
 int main (int argc, char **argv)
@@ -574,7 +611,6 @@ int iOption;
 		{"model",   required_argument, 0,	'm'},
 		{"community",required_argument, 0,	'u'},
 		{"filename",required_argument, 0,	'f'},
-//		{"ipassign",required_argument, 0,	'g'},
 		{"acl-data",required_argument, 0,	'l'},
 		{"ip-addr",required_argument, 0,	'0'},
 		{"ip-mask",required_argument, 0,	'1'},
@@ -674,13 +710,6 @@ int iOption;
 				DCOMMON("%s: option -f with value `%s'\n", cArg0, optarg);
 				strcpy(cFwName, optarg);
 				break;
-
-			/* Couple: Assign static IP address manually */
-/*			case 'g':
-				DCOMMON("%s: option -g with value `%s'\n", cArg0, optarg);
-				strcpy(cNewIpAddr, optarg);
-				break;
-*/
 
 			/* Couple: Assign ACL setings */
 			case 'l':

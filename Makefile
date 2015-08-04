@@ -1,4 +1,4 @@
-# Makefile to generate Cprimitive <inject>
+# Makefile to generate C-primitive <inject>
 #
 # 1. Ensure <cURL-devel> is installed on your system. If needed
 # can be downloaded from here: http://curl.haxx.se/download.html,

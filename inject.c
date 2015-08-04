@@ -71,19 +71,19 @@ char cTid[MAX_TID_SIZE];
 char cSnmp[MAX_SNMP_SIZE];
 
 /* Parameters of ACL froup to be created on target switch */
-char cAcl[MAX_SNMP_SIZE];
+char cAcl[MAX_STR_SIZE];
 
-/* */
-char cAddr[MAX_SNMP_SIZE];
+/* static IP address to be assigned to a switch */
+char cAddr[MAX_IP_SIZE];
 
-/* */
-char cMask[MAX_SNMP_SIZE];
+/* sbnet mask to be assigned along with static IP address */
+char cMask[MAX_IP_SIZE];
 
 /* Name of switch model. 5 chars long, so assuming MAX_SNMP_SIZE is enough */
-char cModel[MAX_SNMP_SIZE];
+char cModel[MAX_STR_SIZE];
 
-/* Name of formware to upload and burn. Assuming length MAX_SNMP_SIZE is sifficient */
-char cFwName[MAX_SNMP_SIZE];
+/* Name of firmware to upload and burn. Assuming length MAX_SNMP_SIZE is sifficient */
+char cFwName[MAX_STR_SIZE];
 
 /* IP adress to ve assigned of target switch */
 char cNewIpAddr[MAX_IP_SIZE];

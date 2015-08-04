@@ -31,7 +31,6 @@
 
 
 
-
 /* Assuming that 1K shoudl be enought for Barracuda */
 #define MAX_URL_SIZE 	1024
 
@@ -44,6 +43,8 @@
 /* Depends on switch SW, Assuming that 64 is enough */
 #define MAX_TID_SIZE 	64
 
+/* Auxiliary strings, those not library- or Barracuda-dependant */
+#define MAX_STR_SIZE 64
 
 
 #endif /* _CONSTANTS_H_ */

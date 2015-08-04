@@ -3,5 +3,5 @@ echo "1. Assigining static IP settings"
 echo "1. IP address settings issued"
 
 echo "2. Saving changed IP adddress settings. (Supressing STDOUT output is obvious.)"
-./inject.sh 192.168.0.1 save 2428 >./_save.log
+./inject.sh 192.168.0.22 save 2428 >./_save.log
 echo "2. Saved"

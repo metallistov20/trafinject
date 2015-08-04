@@ -373,14 +373,6 @@ Perform ACL settings (grp. creation). Tested on switches: TL-SL2428 (TODO: to be
 */
 int iAclGroup()
 {
-#if (0)
-// TODO: remnove what is below
-/userRpm/ACLRuleCreateRpm.htm?s_userlevel=1&_tid_=81daaf938412fc3c
-//GET /help/ACLRuleCreateHelpRpm_Smart.htm
-GET /userRpm/ACLRuleCreateRpm.htm?submit=Submit&aclId=99&ruleOrder=1&_tid_=81daaf938412fc3c
-//GET /help/ACLRuleCreateHelpRpm_Smart.htm
-#endif /* (0) */
-
 	strcpy (cUrl1, "http://");
 	strcat (cUrl1, cIpAddr);
 	DURL("%s: cUrl1 = %s\n", cArg0, cUrl1);
@@ -455,27 +447,14 @@ int iRebootSwitch()
 
 /* 
 
-Set a static IP address. 
+Set a static IP address with subnet mask. 
 
-TODO: to be tested on TL-SL2428, TL-SL2218, TL-SL5428E.
+Was ested on TL-SL2428, TL-SL2218, TL-SL5428E.
 
 */
 int iAssignIp()
 {
-// FIXME! FIXME! FIXME! tID are NEEDE for 2218, 2428 for this op.
-// FIXME! FIXME! FIXME! we must parse the out first, since in current case the <inject.sh::NotAssigned> does not suffice !
-
-#if (0)
-GET /userRpm/SystemInfoRpm.htm?s_userlevel=1&_tid_=c66fcc3cd75e9319&_tid_=c66fcc3cd75e9319
-GET /userRpm/SystemIpRpm.htm?s_userlevel=1&_tid_=c66fcc3cd75e9319
-GET /userRpm/SystemIpRpm.htm?ip_mode=0&ip_mgmt_vlanid=1&ip_address=192.168.0.18&ip_mask=255.255.255.0&ip_gateway=&submit=Apply&_tid_=c66fcc3cd75e9319
-GET /userRpm/SystemInfoRpm.htm?s_userlevel=1&_tid_=c66fcc3cd75e9319
-#endif /* (0) */
-
-/*
-TODO:  NECESSARY ??
-
- 
+	/* TODO: CHECK IF MANDATORY. ASSUMING THAT IS. */
 	strcpy (cUrl1, "http://");
 	strcat (cUrl1, cIpAddr);
 	strcat (cUrl1, "/SystemInfoRpm.htm?s_userlevel=1&_tid_=");
@@ -483,13 +462,15 @@ TODO:  NECESSARY ??
 	strcat (cUrl1, "&_tid_=");
 	strcat (cUrl1, cTid);	
 	DURL("%s: cUrl1 = %s\n", cArg0, cUrl1);
-*/
+
+	/* Enter Tab <IP v 4 address> */
 	strcpy (cUrl2, "http://");
 	strcat (cUrl2, cIpAddr);
 	strcat (cUrl2, "/userRpm/SystemIpRpm.htm?s_userlevel=1&_tid_=");
 	strcat (cUrl2, cTid);
 	DURL("%s: cUrl2 = %s\n", cArg0, cUrl2);
 
+	/* Prepare envelope with new address and subnem mask (adn rest) */
 	strcpy (cUrl3, "http://");
 	strcat (cUrl3, cIpAddr);
 	strcat (cUrl3, "/userRpm/SystemIpRpm.htm?ip_mode=0&ip_mgmt_vlanid=1&ip_address=");
@@ -499,22 +480,24 @@ TODO:  NECESSARY ??
 	strcat (cUrl3, "&ip_gateway=&submit=Apply&_tid_=");
 	strcat (cUrl3, cTid);
 	DURL("%s: cUrl3 = %s\n", cArg0, cUrl3);
-/*
-TODO:  NECESSARY ??
 
+	/* Target address is already new. TODO: CHECK IF MANDATORY. ASSUMING THAT IS. */
+	strcpy (cUrl5, "http://");
+	strcat (cUrl5, cAddr);
+	strcat (cUrl5, "/");
+	DURL("%s: cUrl5 = %s\n", cArg0, cUrl5);
+
+	/* Target address is already new */
 	strcpy (cUrl4, "http://");
-	strcat (cUrl4, cIpAddr);
+	strcat (cUrl4, cAddr);
 	strcat (cUrl4, "/userRpm/SystemInfoRpm.htm?s_userlevel=1&_tid_=");
 	strcat (cUrl4, cTid);
 	DURL("%s: cUrl4 = %s\n", cArg0, cUrl4);
-*/
-	/* TODO: add comment 1 */
-/*
-TODO:  NECESSARY ??
 
+	/* TODO: add comment 1 */
 	curl_easy_setopt(curl, CURLOPT_URL, cUrl1 );
 	res = curl_easy_perform(curl);
-*/
+
 	/* TODO: add comment 2 */
 	curl_easy_setopt(curl, CURLOPT_URL, cUrl2);
 	res = curl_easy_perform(curl);
@@ -523,18 +506,17 @@ TODO:  NECESSARY ??
 	curl_easy_setopt(curl, CURLOPT_URL, cUrl3);
 	res = curl_easy_perform(curl);
 
-	/* TODO: add comment 3 */
-/*
-TODO:  NECESSARY ??
+	/*  TODO: CHECK IF MANDATORY. ASSUMING THAT IS. */
+	curl_easy_setopt(curl, CURLOPT_URL, cUrl5);
+	res = curl_easy_perform(curl);
 
-
+	/* TODO: add comment 4 */
 	curl_easy_setopt(curl, CURLOPT_URL, cUrl4);
 	res = curl_easy_perform(curl);
-*/
+
 
 	/*  TODO: add comm */
 	return INJ_SUCCESS;
-
 }
 
 int iBindMacIp()

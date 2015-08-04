@@ -141,7 +141,8 @@ tID_e=$tID
 
 		./inject --ipassign --id="$tID" --target="$IP" --ip-addr="$4" --ip-mask="$5"
 
-		./inject --close --target="$IP"
+		# The adress on switch has already been changed. Beware what you pass as <--target> .
+		./inject --close --target="$4"
 
 		exit 0
 

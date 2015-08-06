@@ -28,11 +28,10 @@ BadParam="BadParameter"
 
 CheckIp()
 {
-	 # Target IP
-	 IP=$1
+	# Target IP
+	IP=$1
 
-	# TODO: check parenthesis
-	if [ $IP != "192.168.0.1" ]; then
+	if [[ $IP != "192.168.0.1" ]]; then
 
 		# in most cases we deal with 192.168.0.1, admin:amdin; still there are other cases
 		echo "<$0>: it's recomended to check an IP">$InfoFile
@@ -49,28 +48,27 @@ CheckOp()
 	# Switch name passed via param 
 	OPERATION="$1"
 
-	# TODO: check parenthesis, here and below in this fn
-	if  [ $OPERATION == "create" ]; then
+	if [[ $OPERATION == "create" ]]; then
 
 		echo "<$0>: will create SNMP group, then will save it">$InfoFile
 
-	elif  [ $OPERATION == "save" ]; then
+	elif [[ $OPERATION == "save" ]]; then
 
 		echo "<$0>: will only save the changes alegedly done earlier">$InfoFile
 
-	elif  [ $OPERATION == "reboot" ]; then
+	elif [[ $OPERATION == "reboot" ]]; then
 
 		echo "<$0>: will reboot the switch right now">$InfoFile
 
-	elif  [ $OPERATION == "upgrade" ]; then
+	elif [[ $OPERATION == "upgrade" ]]; then
 
 		echo "<$0>: will upgrade firmware of switch">$InfoFile
 
-	elif  [ $OPERATION == "acl" ]; then
+	elif [[ $OPERATION == "acl" ]]; then
 
 		echo "<$0>: will create ACL group">$InfoFile
 
-	elif  [ $OPERATION == "static" ]; then
+	elif [[ $OPERATION == "static" ]]; then
 
 		echo "<$0>: will assign static IP address with netmask">$InfoFile
 

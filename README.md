@@ -1,4 +1,4 @@
-L7 traffic injections to autimate remote setting of L2/L3 network hardware
+L7 traffic injections to automate remote setting of L2/L3 network hardware.
 
 ABSTRACT.
 

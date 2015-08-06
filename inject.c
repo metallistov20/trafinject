@@ -481,11 +481,17 @@ int iAssignIp()
 	strcat (cUrl3, cTid);
 	DURL("%s: cUrl3 = %s\n", cArg0, cUrl3);
 
+#if (1)
+// TODO: L4 (TCP) generates retransmission here. Why?
+// 192.168.0.138	HTTP	638	GET /userRpm/SystemIpRpm.htm?ip_mode=0&ip_mgmt_vlanid=1&ip_address=192.168.0.139&ip_mask=255.255.255.0&ip_gateway=&submit=Apply&_tid_=88cd6bf5f8f06e81
+// 192.168.0.139
+
 	/* Target address is already new. TODO: CHECK IF MANDATORY. ASSUMING THAT IS. */
 	strcpy (cUrl5, "http://");
 	strcat (cUrl5, cAddr);
 	strcat (cUrl5, "/");
 	DURL("%s: cUrl5 = %s\n", cArg0, cUrl5);
+#endif /* (0) */
 
 	/* Target address is already new */
 	strcpy (cUrl4, "http://");

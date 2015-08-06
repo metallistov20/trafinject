@@ -97,8 +97,7 @@ tID_e=$tID
 		fi
 	fi
 
-	# TODO: check parenthesis
-	if  [ $OPERATION == "upgrade" ]; then
+	if  [[ $OPERATION == "upgrade" ]]; then
 
 		./inject --upgrade --target="$IP" --id="$tID" --filename=$FILENAME
 
@@ -110,15 +109,13 @@ tID_e=$tID
 
 		exit 0
 
-	# TODO: check parenthesis
-	elif  [ $OPERATION == "create" ]; then
+	elif  [[ $OPERATION == "create" ]]; then
 
 		echo "<$0>: Simulating user manipulations on SNMP Tab in web interface of (TL-SL$MODEL) switch";
 
 		./inject --create --id="$tID" --target="$IP" --community="$SNMP_GRP"
 
-	# TODO: check parenthesis
-	elif  [ $OPERATION == "reboot" ]; then
+	elif  [[ $OPERATION == "reboot" ]]; then
 
 		echo "<$0>: Performing remote reboot of (TL-SL$MODEL) switch";
 
@@ -128,8 +125,7 @@ tID_e=$tID
 		./inject --close --target="$IP"
 		exit 0
 
-	# TODO: check parenthesis
-	elif  [ $OPERATION == "acl" ]; then
+	elif  [[ $OPERATION == "acl" ]]; then
 
 		echo "<$0>: Doing ACL settings ( --acl-data=$ACL_GRP )";
 
@@ -139,8 +135,7 @@ tID_e=$tID
 
 		exit 0
 
-	# TODO: check parenthesis
-	elif  [ $OPERATION == "static" ]; then
+	elif  [[ $OPERATION == "static" ]]; then
 
 		echo "<$0>: Assigning static IP address ( --ip-addr="$4" --ip-mask="$5")";
 
@@ -151,8 +146,7 @@ tID_e=$tID
 
 		exit 0
 
-	# TODO: check parenthesis
-	elif  [ $OPERATION == "save" ]; then
+	elif  [[ $OPERATION == "save" ]]; then
 
 		echo "<$0>: To save changes alegedly done earlier in web interface of (TL-SL$MODEL) switch ...";	
 

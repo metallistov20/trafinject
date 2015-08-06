@@ -31,6 +31,7 @@ CheckIp()
 	 # Target IP
 	 IP=$1
 
+	# TODO: check parenthesis
 	if [ $IP != "192.168.0.1" ]; then
 
 		# in most cases we deal with 192.168.0.1, admin:amdin; still there are other cases
@@ -48,6 +49,7 @@ CheckOp()
 	# Switch name passed via param 
 	OPERATION="$1"
 
+	# TODO: check parenthesis, here and below in this fn
 	if  [ $OPERATION == "create" ]; then
 
 		echo "<$0>: will create SNMP group, then will save it">$InfoFile
@@ -92,6 +94,7 @@ CheckModel()
 	 # Switch name passed via param 
 	 MODEL_NAME="$1"
 
+	 # TODO: check parenthesis, here and below in this fn
 	 if [ $MODEL_NAME == "2218" ] || [ $MODEL_NAME == "2428" ] || [ $MODEL_NAME == "5428E" ] ; then
 
 		# usual name for this SNMP Group, still may be different
@@ -181,5 +184,4 @@ export -f CheckOp
 export -f CheckModel
 export -f CheckSnmp
 export -f CheckAcl
-
 

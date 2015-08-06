@@ -37,7 +37,7 @@ int iOperation;
 /* Intermediate URL structure */
 CURL *curl;
 
-/* Extended edition of current SW framewors is expected to process ths ErrCode */
+/* Extended edition of current SW framework is expected to process the ErrCode */
 CURLcode res;
 
 /* Aux URL 1 */

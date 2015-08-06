@@ -72,10 +72,12 @@ declare -a rawENTRY
 	do
 	   cnt=$((cnt+1))
 
+	   # TODO: check parenthesis
 	   if [ $cnt -gt 3 ]; then
 
 		MAC=$MAC$i
 
+		# TODO: check parenthesis
 		if [ 9 -gt $cnt ]; then
 
 			MAC=$MAC":"
@@ -108,11 +110,13 @@ declare -a rawENTRY
 		   if [[ ! $REALNAME =~ $j ]]; then		
 	  		echo "${j} is not in ${REALNAME}. Let's write it this S/N into switch... "
 
+			# TODO: check parenthesis
 			if  [ $MODEL == "2218" ] || [ $MODEL == "2428" ]
 			then
 				# the MAC is present in table: concatenate REALNAME and S/N, and write it back into switch
 				ULTINAMENAME=$REALNAME
 				ULTINAMENAME=$ULTINAMENAME\($j\)
+			# TODO: check parenthesis
 			elif  [ $MODEL == "5428E" ]
 			then
 

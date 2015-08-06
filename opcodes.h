@@ -22,25 +22,25 @@
 #define _OPCODES_H_
 
 
-/* Opcode definition for operaiotn 'Open Site' */
+/* Opcode definition for operation 'Open Site' */
 #define DO_OPEN_OP	0
 
-/* Opcode definition for operaiotn 'Close Site' */
+/* Opcode definition for operation 'Close Site' */
 #define DO_CLOSE_OP	1
 
-/* Opcode definition for operaiotn 'Create SANMP group, Enable SNMP srv, and Save' */
+/* Opcode definition for operation 'Create SANMP group, Enable SNMP srv, and Save' */
 #define DO_CREATE_OP	2
 
-/* Opcode definition for operaiotn 'Save' */
+/* Opcode definition for operation 'Save' */
 #define DO_SAVE_OP	3
 
-/* Opcode definition for operaiotn 'Create ACL group, Set Up ACL, and Save' */
+/* Opcode definition for operation 'Create ACL group, Set Up ACL, and Save' */
 #define DO_ACL_OP	4
 
-/* Opcode definition for operaiotn 'Upload dirmware, and Write it' */
+/* Opcode definition for operation 'Upload dirmware, and Write it' */
 #define DO_FIRMWARE_OP	5
 
-/* Opcode definition for switch reboot */
+/* Opcode definition for switch reboot operation */
 #define DO_REBOOT_OP	6
 
 /* Opcode definition for manual assigning an IP to switch */

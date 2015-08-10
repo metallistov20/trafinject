@@ -561,7 +561,7 @@ int iEnablePort()
 	strcat (cUrl2, cTid);
 	DURL("%s: cUrl2 = %s\n", cArg0, cUrl2);
 
-	/* Prepare envelope with new address and subnem mask (adn rest) */
+	/* Prepare message with new address and subnem mask (and rest) */
 	strcpy (cUrl3, "http://");
 	strcat (cUrl3, cIpAddr);
 	strcat (cUrl3, "/userRpm/PortStatusSetRpm.htm?txt_ipaddr=&state=1&spd=0&flowctrl=0&chk_1=1&chk_2=1&chk_3=1&submit=Apply&_tid_=");

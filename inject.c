@@ -368,7 +368,7 @@ int iUpgradeFirmware()
 
 /* 
 
-Perform ACL settings (group creation). Tested on switches: TL-SL2428 (TODO: to be tested on TL-SL2218, TL-SL5428E).
+Performs an ACL settings (group creation). Tested on switches: TL-SL2428 (TODO: to be tested on TL-SL2218, TL-SL5428E).
 
 */
 int iAclGroup()

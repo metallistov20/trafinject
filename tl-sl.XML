@@ -10,6 +10,12 @@
 		<Daylight Saving Time>
 		</Daylight Saving Time>
 		<System IP>
+			<apx1:URL1="/SystemInfoRpm.htm?s_userlevel=1&_tid_=">
+			<apx1:URL2="&_tid_=">
+			<apx2:URL1="/userRpm/SystemIpRpm.htm?s_userlevel=1&_tid_=">
+			<apx3:URL1="/userRpm/SystemIpRpm.htm?ip_mode=0&ip_mgmt_vlanid=1&ip_address=">
+			<apx3:URL2="&ip_mask=">
+			<apx3:URL3="&ip_gateway=&submit=Apply&_tid_=">
 		</System IP>
 		<System IPv6>
 		</System IPv6>
@@ -28,6 +34,9 @@
 		<Firmware Upgrade>
 		</Firmware Upgrade>
 		<System Reboot>
+			<apx1:URL="/userRpm/RestoreRpm.htm?s_userlevel=1&_tid_=">
+			<apx2:URL="/userRpm/ReiniRstAdRpm.htm?restore=Reset&_tid_=">
+			<apx3:URL="/userRpm/ReiniRstAdTempRpm.htm?_tid_=">
 		</System Reboot>
 		<System Reset>
 		</System Reset>
@@ -244,6 +253,9 @@
 		<ACL Summary>
 		</ACL Summary>
 		<ACL Create>
+			<apx1:URL="">
+			<apx2:URL="/userRpm/ACLRuleCreateRpm.htm?s_userlevel=1&_tid_=">
+			<apx3:URL="/userRpm/ACLRuleCreateRpm.htm?submit=Submit&aclId=">
 		</ACL Create>
 		<MAC ACL>
 		</MAC ACL>
@@ -320,6 +332,12 @@
 		<SNMP User>
 		</SNMP User>
 		<SNMP Community>
+			<apx1:URL="/logon/LogonRpm.htm">
+			<pld1:STR="admin:admin TODO!!!">
+			<apx2:URL="/userRpm/SNMPv3CommunityConfigRpm.htm">
+			<apx3:URL="/userRpm/?s_userlevel=1&_tid_= TODO!!!">
+			<apx4:URL="TODO!! ?txt_comname=%TODO&comRight=2&comView=0&button=Add&_tid_= TODO!!!">
+			<apx4:URL="/userRpm/SNMPv3GlobalConfigRpm.htm?snmpState=1&button=stateSubmit&_tid_= TODO!!">
 		</SNMP Community>
 	</SNMP Config>
 	<Notification>
@@ -412,8 +430,23 @@
 	</Network Diagnostics>
 </Maintenance>
 <Save Config>
+	<apx1:URL1="">
+	<apx2:URL1="/userRpm/ConfigsaveRpm.htm?s_userlevel=1&_tid_=">
+	<apx2:URL2="/userRpm/ConfigsaveRpm.htm?s_userlevel=1&_tid_=">
+	<apx2:URL3="&_tid_=">
+	<apx3:URL1="/userRpm/ConfigsaveImg.htm">
+	<apx4:URL1="/userRpm/ConfigsaveFileRpm.htm?_tid_=">
 </Save Config>
 <Logout>
+	<apx1:URL1="/userRpm/SystemInfoRpm.htm?t=both&_tid_=">
+	<apx2:URL1="/userRpm/Logout.htm">
+	<apx3:URL1="/">
 </Logout>
+<Login>
+	<apx1:URL1="/logon/LogonRpm.htm">
+	<pld1:STR="username=admin&password=admin&logon=Login">
+	<apx2:URL1="/">
+	<pld2:STR="user=admin&level=1&userID=0">
+</Login>
 
 

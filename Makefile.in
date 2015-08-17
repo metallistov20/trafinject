@@ -27,11 +27,12 @@ export CC=@CC@
 
 BUILD_CURL=@BUILD_CURL@
 
-CFLAGS = -c -g
+CFLAGS = -c -g -I/usr/include/libxml2 
 
-LDFLAGS = -L/usr/local/lib 
+LDFLAGS = -L/usr/local/lib  -L/usr/lib/i386-lunux-gnu
 
-LIBS = -lcurl 
+
+LIBS = -lcurl 	-lxml2
 
 
 ifeq ($(strip $(prefix)),)
@@ -53,9 +54,8 @@ install: build
 	install $(PREFIX)
 
 
-# TODO: remove this <preclean> after draftwork finished
-build:	$(OBJS) inject
-#build:	$(OBJS) inject preclean
+# TODO: remove this odd <clean> after draftwork finished
+build:	$(OBJS) inject preclean
 
 preclean:
 	rm -fv config.log config.status configure Makefile *.~ *.o *.log *.in~
@@ -79,3 +79,4 @@ inject: inject.o
 
 #uninstall:
 #	$(PYTHON) ./setup.py uninstall --pydir=`find $(prefix)/lib -name trafinject | head -1` --pybin=`find $(prefix)/bin -name trafinject | head -1`
+

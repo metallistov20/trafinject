@@ -63,7 +63,7 @@ fi
 
 go_in_l=1
 AC_CHECK_LIB(c, getopt_long, [], [go_in_l=0])
-if test $cu_in_h == 0
+if test $go_in_l == 0
 then
 	AC_MSG_NOTICE([getopt items fail.])
 	echo 1 >&2 "** check libc library"
@@ -72,9 +72,38 @@ else
 	AC_MSG_NOTICE([getopt items found working])
 fi
 
+
+xm_in_h=1
+AC_CHECK_HEADERS(libxml/parser.h, [], [xm_in_h=0])
+if test $xm_in_h == 0
+then
+	AC_MSG_NOTICE([libxml/parser.h is missing.])
+	echo 1>&2 "** check libxml2 headers"
+	exit -1
+else
+	AC_MSG_NOTICE([libxml/parser.h is present])
+fi
+
+
+
+xm_in_l=1
+AC_SEARCH_LIBS(xmlFreeDoc, xml2, [], [xm_in_l=0], [])
+if test $xm_in_l == 0
+then
+	AC_MSG_NOTICE([libxml2.a items fail.])
+	echo 1>&2 "** install libxml2"
+	exit -1
+else
+	AC_MSG_NOTICE([libxml2.a items found working.])
+fi
+
+
+
 AC_SUBST(BUILD_CURL, $BUILD_CURL)
+AC_SUBST(BUILD_XML2, $BUILD_XML2)
 
 AC_SUBST(PLATFORM, $(uname -s))
+
 AC_SUBST(INSTALL_OPTIONS, $INSTALL_OPTIONS)
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

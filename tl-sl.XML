@@ -1,0 +1,419 @@
+<?xml version="1.0" ?>
+<System>
+	<System Info>
+		<System Summary>
+		</System Summary>
+		<Device Description>
+		</Device Description>
+		<System Time>
+		</System Time>
+		<Daylight Saving Time>
+		</Daylight Saving Time>
+		<System IP>
+		</System IP>
+		<System IPv6>
+		</System IPv6>
+	</System Info>
+	<User Management>
+		<User Table>
+		</User Table>
+		<User Config>
+		</User Config>
+	</User Management>
+	<System Tools>
+		<Config Restore>
+		</Config Restore>
+		<Config Backup>
+		</Config Backup>
+		<Firmware Upgrade>
+		</Firmware Upgrade>
+		<System Reboot>
+		</System Reboot>
+		<System Reset>
+		</System Reset>
+	</System Tools>
+	<Access Security>
+		<Access Control>
+		</Access Control>
+		<SSL Config>
+		</SSL Config>
+		<SSH Config>
+		</SSH Config>
+	</Access Security>
+</System>
+<Switching>
+	<Port>
+		<Port Config>
+		</Port Config>
+		<Port Mirror>
+		</Port Mirror>
+		<Port Security>
+		</Port Security>
+		<Port Isolation>
+		</Port Isolation>
+		<Loopback Detection>
+		</Loopback Detection>
+	</Port>
+	<LAG>
+		<LAG Table>
+		</LAG Table>
+		<Static LAG>
+		</Static LAG>
+		<LACP Config>
+		</LACP Config>
+	</LAG>
+	<Traffic Monitor>
+		<Traffic Summary>
+		</Traffic Summary>
+		<Traffic Statistics>
+		</Traffic Statistics>
+	</Traffic Monitor>
+	<MAC Address>
+		<Address Table>
+		</Address Table>
+		<Static Address>
+		</Static Address>
+		<Dynamic Address>
+		</Dynamic Address>
+		<Filtering Address>
+		</Filtering Address>
+	</MAC Address>
+</Switching>
+<VLAN>
+	<802.1Q VLAN>
+		<VLAN Config>
+		</VLAN Config>
+		<Port Config>
+		</Port Config>
+	</802.1Q VLAN>
+	<MAC VLAN>
+		<MAC VLAN>
+		</MAC VLAN>
+		<Port Enable>
+		</Port Enable>
+	</MAC VLAN>
+	<Protocol VLAN>
+		<Protocol VLAN>
+		</Protocol VLAN>
+		<Protocol Template>
+		</Protocol Template>
+		<Port Enable>
+		</Port Enable>
+	</Protocol VLAN>
+	<VLAN VPN>
+		<VPN Config>
+		</VPN Config>
+		<VLAN Mapping>
+		</VLAN Mapping>
+		<Port Enable>
+		</Port Enable>
+	</VLAN VPN>
+	<Private VLAN>
+		<PVLAN Config>
+		</PVLAN Config>
+		<Port Config>
+		</Port Config>
+	</Private VLAN>
+	<GVRP>
+	</GVRP>
+</VLAN>
+<Spanning Tree>
+	<STP Config>
+		<STP Config>
+		</STP Config>
+		<STP Summary>
+		</STP Summary>
+	</STP Config>
+	<Port Config>
+	</Port Config>
+	<MSTP Instance>
+		<Region Config>
+		</Region Config>
+		<Instance Config>
+		</Instance Config>
+		<Instance Port Config>
+		</Instance Port Config>
+	</MSTP Instance>
+	<STP Security>
+		<Port Protect>
+		</Port Protect>
+		<TC Protect>
+		</TC Protect>
+	</STP Security>
+</Spanning Tree>
+<Ethernet OAM>
+	<Basic Config>
+		<Basic Config>
+		</Basic Config>
+		<Discovery Info>
+		</Discovery Info>
+	</Basic Config>
+	<Link Monitoring>
+	</Link Monitoring>
+	<RFI>
+	</RFI>
+	<Remote Loopback>
+	</Remote Loopback>
+	<Statistics>
+		<Statistics>
+		</Statistics>
+		<Event Log>
+		</Event Log>
+	</Statistics>
+	<DLDP>
+	</DLDP>
+</Ethernet OAM>
+<Multicast>
+	<IGMP Snooping>
+		<Snooping Config>
+		</Snooping Config>
+		<VLAN Config>
+		</VLAN Config>
+		<Port Config>
+		</Port Config>
+		<IP-Range>
+		</IP-Range>
+		<Multicast VLAN>
+		</Multicast VLAN>
+		<Static Multicast IP>
+		</Static Multicast IP>
+		<Packet Statistics>
+		</Packet Statistics>
+		<Querier Config>
+		</Querier Config>
+	</IGMP Snooping>
+	<MLD Snooping>
+		<Global Config>
+		</Global Config>
+		<VLAN Config>
+		</VLAN Config>
+		<Filter Config>
+		</Filter Config>
+		<Port Config>
+		</Port Config>
+		<Static Multicast>
+		</Static Multicast>
+		<Querier Config>
+		</Querier Config>
+		<Packet Statistics>
+		</Packet Statistics>
+	</MLD Snooping>
+	<Multicast Table>
+		<IPv4 Multicast Table>
+		</IPv4 Multicast Table>
+		<IPv6 Multicast Table>
+		</IPv6 Multicast Table>
+	</Multicast Table>
+</Multicast>
+<QoS>
+	<DiffServ>
+		<Port Priority>
+		</Port Priority>
+		<DSCP Priority>
+		</DSCP Priority>
+		<802.1P/CoS mapping>
+		</802.1P/CoS mapping>
+		<Schedule Mode>
+		</Schedule Mode>
+	</DiffServ>
+	<Bandwidth Control>
+		<Rate Limit>
+		</Rate Limit>
+		<Storm Control>
+		</Storm Control>
+	</Bandwidth Control>
+	<Voice VLAN>
+		<Global Config>
+		</Global Config>
+		<Port Config>
+		</Port Config>
+		<OUI Config>
+		</OUI Config>
+	</Voice VLAN>
+</QoS>
+<ACL>
+	<Time-Range>
+		<Time-Range Summary>
+		</Time-Range Summary>
+		<Time-Range Create>
+		</Time-Range Create>
+		<Holiday Config>
+		</Holiday Config>
+	</Time-Range>
+	<ACL Config>
+		<ACL Summary>
+		</ACL Summary>
+		<ACL Create>
+		</ACL Create>
+		<MAC ACL>
+		</MAC ACL>
+		<Standard-IP ACL>
+		</Standard-IP ACL>
+		<Extend-IP ACL>
+		</Extend-IP ACL>
+	</ACL Config>
+	<Policy Config>
+		<Policy Summary>
+		</Policy Summary>
+		<Policy Create>
+		</Policy Create>
+		<Action Create>
+		</Action Create>
+	</Policy Config>
+	<Policy Binding>
+		<Binding Table>
+		</Binding Table>
+		<Port Binding>
+		</Port Binding>
+		<VLAN Binding>
+		</VLAN Binding>	
+	</Policy Binding>
+</ACL>
+<Network Security>
+	<Network Security>
+		<Binding Table>
+		</Binding Table>
+		<Manual Binding>
+		</Manual Binding>
+		<ARP Scanning>
+		</ARP Scanning>
+		<DHCP Snooping>
+		</DHCP Snooping>
+	</Network Security>
+	<ARP Inspection>
+		<ARP Detect>
+		</ARP Detect>
+		<ARP Defend>
+		</ARP Defend>
+		<ARP Statistics>
+		</ARP Statistics>
+	</ARP Inspection>
+	<IP Source Guard>
+	</IP Source Guard>
+	<DoS Defend>
+		<DoS Defend>
+		</DoS Defend>
+		<DoS Detect>
+		</DoS Detect>
+	</DoS Defend>
+	<802.1X>
+		<Global Config>
+		</Global Config>
+		<Port Config>
+		</Port Config>
+		<Radius Server>
+		</Radius Server>
+	</802.1X>
+	<PPPoE Config>
+		<PPPoE Circuit-ID>
+		</PPPoE Circuit-ID>
+	</PPPoE Config>
+</Network Security>
+<SNMP>
+	<SNMP Config>
+		<Global Config>
+		</Global Config>
+		<SNMP View>
+		</SNMP View>
+		<SNMP Group>
+		</SNMP Group>
+		<SNMP User>
+		</SNMP User>
+		<SNMP Community>
+		</SNMP Community>
+	</SNMP Config>
+	<Notification>
+		<Notification Config>
+		</Notification Config>
+		<Traps Config>
+		</Traps Config>
+	</Notification>
+	<RMON>
+		<History Control>
+		</History Control>
+		<Event Config>
+		</Event Config>
+		<Alarm Config>
+		</Alarm Config>
+	</RMON>
+</SNMP>
+<LLDP>
+	<Basic Config>
+		<Global Config>
+		</Global Config>
+		<Port Config>
+		</Port Config>
+	</Basic Config>
+	<Device Info>
+		<Local Info>
+		</Local Info>
+		<Neighbor Info>
+		</Neighbor Info>
+	</Device Info>
+	<Device Statistics>
+		<Statistic Info>
+		</Statistic Info>
+	</Device Statistics>
+</LLDP>
+<Cluster>
+	<NDP>
+		<Neighbor Info>
+		</Neighbor Info>
+		<NDP Summary>
+		</NDP Summary>
+		<NDP Config>
+		</NDP Config>
+	</NDP>
+	<NTDP>
+		<Device Table>
+		</Device Table>
+		<NTDP Summary>
+		</NTDP Summary>
+		<NTDP Config>
+		</NTDP Config>
+	</NTDP>
+	<Cluster>
+		<Cluster Summary>
+		</Cluster Summary>
+		<Cluster Config>
+		</Cluster Config>
+		<Member Config>
+		</Member Config>
+		<Cluster Topology>
+		</Cluster Topology>
+	</Cluster>
+</Cluster>
+<Maintenance>
+	<System Monitor>
+		<CPU Monitor>
+		</CPU Monitor>
+		<Memory Monitor>
+		</Memory Monitor>
+	</System Monitor>
+	<Log>
+		<Log Table>
+		</Log Table>
+		<Local Log>
+		</Local Log>
+		<Remote Log>
+		</Remote Log>
+		<Backup Log>
+		</Backup Log>
+	</Log>
+	<Device Diagnostics>
+		<Cable Test>
+		</Cable Test>
+	</Device Diagnostics>
+	<Network Diagnostics>
+		<Ping>
+		</Ping>
+		<Tracert>
+		</Tracert>
+	</Network Diagnostics>
+</Maintenance>
+<Save Config>
+</Save Config>
+<Logout>
+</Logout>
+
+

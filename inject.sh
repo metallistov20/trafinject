@@ -121,8 +121,8 @@ tID_e=$tID
 
 		./inject --reboot --id="$tID" --target="$IP" 
 
-		# TODO: 4Hz ISSUE !!! exit -1
 		./inject --close --target="$IP"
+
 		exit 0
 
 	elif  [[ $OPERATION == "acl" ]]; then

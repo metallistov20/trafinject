@@ -92,8 +92,7 @@ CheckModel()
 	 # Switch name passed via param 
 	 MODEL_NAME="$1"
 
-	 # TODO: check parenthesis, here and below in this fn
-	 if [ $MODEL_NAME == "2218" ] || [ $MODEL_NAME == "2428" ] || [ $MODEL_NAME == "5428E" ] ; then
+	 if [[ $MODEL_NAME == "2218" ] || [ $MODEL_NAME == "2428" ] || [ $MODEL_NAME == "5428E" ]] ; then
 
 		# usual name for this SNMP Group, still may be different
 		echo "<$0>: known switch (TL-SL$MODEL_NAME) being processed">$InfoFile
@@ -182,4 +181,3 @@ export -f CheckOp
 export -f CheckModel
 export -f CheckSnmp
 export -f CheckAcl
-

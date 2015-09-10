@@ -27,13 +27,12 @@ export CC=@CC@
 
 BUILD_CURL=@BUILD_CURL@
 
-CFLAGS = -c -g -I/usr/include/libxml2 
+CFLAGS = -c -g 
 
 LDFLAGS = -L/usr/local/lib  -L/usr/lib/i386-lunux-gnu
 
 
-LIBS = -lcurl 	-lxml2
-
+LIBS = -lcurl 	
 
 ifeq ($(strip $(prefix)),)
 	PREFIX=""
@@ -73,10 +72,4 @@ inject: inject.o
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 
-#distclean: clean
-#	if [ "$(BUILD_C_LIBS)" -eq "1" ]; then make -C $(SRC_C_DIR) distclean; fi
-#	rm -rf Makefile config.* *.cache
-
-#uninstall:
-#	$(PYTHON) ./setup.py uninstall --pydir=`find $(prefix)/lib -name trafinject | head -1` --pybin=`find $(prefix)/bin -name trafinject | head -1`
 

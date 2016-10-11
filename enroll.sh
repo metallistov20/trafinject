@@ -1,4 +1,5 @@
 #!/bin/bash
+# Now Kimi look at this
 #
 # Script for automatical writing S/N from table 'dev-mac-id.base.txt'
 # into network switches TL-SLxxxx.
